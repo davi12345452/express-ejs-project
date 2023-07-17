@@ -1,0 +1,4 @@
+Frameworks instalados: EJS e EXPRESS (--save)
+
+- EJS serve para manipular o HTML e CSS com JavaScript, ele basicamente usa JavaScript para rodar HTML. A estrutura é igual à html, porém
+o arquivo é .ejs
