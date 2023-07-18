@@ -11,11 +11,16 @@ app.set('view engine', 'ejs');
 // Aqui estou permitindo o uso na pasta public
 app.use(express.static("public"));
 
-//Rota teste para incializar
+// Rota da home do programa
 app.get("/", (req, res) => {
     res.render('../view/index.ejs');
 });
 
+// Rota para pergunta
+
+app.get("/perguntar", (req, res) => {
+    res.render("../view/pergunta.ejs");
+})
 // Inicializar a aplicação
 
 app.listen(8080, (error) => {
