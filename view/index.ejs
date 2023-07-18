@@ -47,7 +47,13 @@
 <body>
     <h1>Seja Bem Vindo <%=nome%> </h1>
     <h1>Formulário Estilizado</h1>
+    <% if(condicional){ %>
+        <h3>Ocorreu um erro</h3>
+    <%}%>
 
+    <% arr.forEach(function(p){%>
+        <h5>Tenis marca <%= p.marca %> do tipo <%= p.tipo%></h5>
+    <%})%>
     <form action="/enviar-formulario" method="POST">
         <div class="form-group">
             <label for="nome">Nome:</label>
