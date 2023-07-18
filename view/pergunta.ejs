@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
+<%- include('partials/head.ejs') %>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h4>Faça sua pergunta: </h4>
-            </div>
-            <div class="card-body">
-                <form action="">
-                    <br><label>Título:</label>
-                    <br><input type="text", placeholder="Escreva o título da sua pergunta", class="form-control">
-                    <br><label>Descrição:</label>
-                    <br><textarea placeholder="Descreve acerca da sua pergunta", class="form-control"></textarea>
-                    <br><button class="btn btn-danger">Enviar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <%- include('partials/navbar.ejs') %>
+    <%- include('partials/form.ejs') %>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
