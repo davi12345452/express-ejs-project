@@ -8,7 +8,17 @@ const app = express();
 app.set('view engine', 'ejs');
 
 //Rota teste para incializar
-app.get("/", (req, res) => res.render('../view/index.ejs')); // Permite use de arrow functions
+app.get("/:nome?", (req, res) => {
+    let nome = req.params.nome;
+    let s_nome = "Sem nome"
+    // Renderizando o ejs com variáveis (podendo vir de requisoções)
+    // basta chamar no .ejs um termo <%= <var> %>
+    if(nome) {
+        res.render('../view/index.ejs', {nome: nome})
+    }else{
+        res.render('../view/index.ejs', {nome: s_nome})
+    }
+}); // Permite use de arrow functions
 
 // Inicializar a aplicação
 
