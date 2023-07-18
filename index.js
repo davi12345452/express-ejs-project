@@ -14,6 +14,10 @@ require('dotenv').config()
 
 const connection = require("./database/sequelize");
 
+// Importando o modelo de tabela para pergunta:
+
+const modelQuestion = require("./database/modelQuestion");
+const question = require("./database/modelQuestion");
 // Teste de conexão:
 
 connection
@@ -52,10 +56,16 @@ app.get("/perguntar", (req, res) => {
 
 app.post("/salvaDadoPerguntas", (req, res) => {
     //Recebendo os dados de inputs, utilizando a estrutura name de HTML
-    let title = req.body.title
-    let description = req.body.description
-    console.log(title, description);
-    res.send("Pergunta recebida")
+    var _title = req.body.title;
+    var _description = req.body.description;
+    console.log(`${_title} <==> ${_description}`)
+    question.create({
+        title: _title,
+        description: _description
+    }).then(()=>{
+        console.log("Pergunta salva com sucesso")
+        res.redirect("/");
+    }).catch((error)=> console.log(error));
 })
 // Inicializar a aplicação
 
