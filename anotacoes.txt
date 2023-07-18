@@ -2,3 +2,10 @@ Frameworks instalados: EJS e EXPRESS (--save)
 
 - EJS serve para manipular o HTML e CSS com JavaScript, ele basicamente usa JavaScript para rodar HTML. A estrutura é igual à html, porém
 o arquivo é .ejs
+
+- Body-Parser : serve para trazer os dados fornecidos pelo usuário ao backend, buscando isso nas requisições. 
+
+- Sequelize: esse framework será utilizado para integrar o backend com o database MySql, ele usa ainda node para
+manipular o SQL. Ainda instalei o mysql2 para poder manipular mysql com sequelize.
+
+- Instalei o dotenv para poder esconder senhas e certos nomes.
