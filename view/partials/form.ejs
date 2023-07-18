@@ -4,7 +4,9 @@
             <h4>Faça sua pergunta:</h4>
         </div>
         <div class="card-body">
-            <form action="">
+            <!-- Metodo POST, dados passados na requisição - seguro, Metodo GET, passados nas URL, inseguro.
+                 Action é a rota onde irá salvar os dados-->
+            <form method="POST" action="/salvaDadoPerguntas">
                 <br><label>Título:</label>
                 <br><input type="text" placeholder="Escreva o título da sua pergunta" class="form-control">
                 <br><label>Descrição:</label>

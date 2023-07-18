@@ -21,6 +21,12 @@ app.get("/", (req, res) => {
 app.get("/perguntar", (req, res) => {
     res.render("../view/pergunta.ejs");
 })
+
+// Rota post para receber os dados do formulário
+
+app.post("/salvaDadoPerguntas", (req, res) => {
+    res.send("Pergunta recebida")
+})
 // Inicializar a aplicação
 
 app.listen(8080, (error) => {
