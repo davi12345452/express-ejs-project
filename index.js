@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 // Rota para pergunta
 
 app.get("/perguntar", (req, res) => {
-    res.render("../view/pergunta.ejs");
+    res.render("../view/perguntar.ejs");
 })
 
 // Rota post para receber os dados do formulário
@@ -79,20 +79,24 @@ app.post("/salvaDadoPerguntas", (req, res) => {
 })
 // Rota individual para cada pergunta
 
-app.get("/pergunta/:id", (req, res) => {
-    let id = req.params.id;
-    question.findAll({raw: true, order:[["id", "DESC"]]}).then(_perguntas => {
-        //console.log(_perguntas)
-        let pergunta = {};
-        _perguntas.forEach(p => {
-            if(p.id == id)
-            pergunta = p;
-        })
-        res.render('../view/index.ejs', {
-            perguntas: [pergunta]
-        });
-    }) 
-
+app.get("/perguntas/:id", (req, res) => {
+    let _id = req.params.id;
+    // findOne é uma função do Sequelize para buscas individuais no db
+    question.findOne({
+        where: {id: _id}
+    }).then(_pergunta => {
+        if(_pergunta != undefined){ // Achou a pergunta no db
+            console.log(_pergunta);
+            res.render("../view/pergunta.ejs", {
+                pergunta: _pergunta
+            })
+        }else{
+            res.redirect("/");
+        }
+        /*res.render('../view/index.ejs', {
+            perguntas: _pergunta
+        });*/
+    })
 })
 // Inicializar a aplicação
 

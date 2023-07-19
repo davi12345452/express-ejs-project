@@ -1,5 +1,21 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/navbar.ejs') %>
-<%- include('partials/form.ejs') %>
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3><%=pergunta.title%></h3>
+        </div>
+        <br>
+        <div class="card-body">
+           <p><%=pergunta.description%></p> 
+        </div>
+        <br>
+        <div class="card-footer">
+            <textarea class="form-control" placeholder="Escreva a sua resposta..."></textarea>
+            <br>
+            <button class="btn btn-danger">Responder</button>
+        </div>
+    </div>
+</div>
 <%- include('partials/scriptsFooter.ejs') %>
-
