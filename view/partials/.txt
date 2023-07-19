@@ -1,1 +1,2 @@
-O ejs usa, de maneira meio rudimentar, a lógica do React e Next, de dividir o código front-end em partes e reaproveitar.
+O ejs usa, de maneira meio rudimentar, a lógica do React e Next, de dividir o código front-end em partes e reaproveitar. O certo é 
+deixar os partials/models iniciados por letra maiúscula. 

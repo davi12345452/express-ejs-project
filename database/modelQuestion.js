@@ -19,7 +19,7 @@ const question = connection.define("_perguntas",{
 
 // Cria a tabela, se ela existir, não forçará a sua criação
 question.sync({force: false}).then(() => {
-    console.log("Table created!");
+    console.log("Table question created!");
 }).catch((error) => {
     console.log(`Error: ${error}`);
 })

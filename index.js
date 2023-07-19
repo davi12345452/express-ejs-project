@@ -14,9 +14,10 @@ require('dotenv').config()
 
 const connection = require("./database/sequelize");
 
-// Importando o modelo de tabela para pergunta:
+// Importando os modelos de tabelas para pergunta e resposta:
 
 const question = require("./database/modelQuestion");
+const answer = require("./database/modelAnswer");
 // Teste de conexão:
 
 connection
