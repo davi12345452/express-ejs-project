@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const connection = require("./sequelize");
 
 // Criando tabela de perguntas no database definido em sequelize.js
-const question = connection.define("_questions",{
+const question = connection.define("_perguntas",{
     title:{
         type: Sequelize.STRING,
         // Impede de receber valores nulos

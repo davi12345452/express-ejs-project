@@ -16,7 +16,6 @@ const connection = require("./database/sequelize");
 
 // Importando o modelo de tabela para pergunta:
 
-const modelQuestion = require("./database/modelQuestion");
 const question = require("./database/modelQuestion");
 // Teste de conexão:
 
@@ -43,7 +42,19 @@ app.use(bodyParser.json());
 
 // Rota da home do programa
 app.get("/", (req, res) => {
-    res.render('../view/index.ejs');
+
+    /* Aqui estamos trazendo as informações do banco de dados, utilizando o model definido previamente.
+     * Pegamos as informações mais limpas, através do raw: true. Como elas são devolvidas em arrays
+     * de objetos, ao enviar um objeto, podemos acessar depois, com um . as colunas desejadas. O resto
+     * da lógica está feita no ejs. Ainda coloquei em ordem decrescente de ID. (ASC -> crescente)
+     */
+
+    question.findAll({raw: true, order:[["id", "DESC"]]}).then(_perguntas => {
+        //console.log(_perguntas)
+        res.render('../view/index.ejs', {
+            perguntas: _perguntas
+        });
+    }) 
 });
 
 // Rota para pergunta
@@ -58,14 +69,30 @@ app.post("/salvaDadoPerguntas", (req, res) => {
     //Recebendo os dados de inputs, utilizando a estrutura name de HTML
     var _title = req.body.title;
     var _description = req.body.description;
-    console.log(`${_title} <==> ${_description}`)
     question.create({
         title: _title,
         description: _description
     }).then(()=>{
-        console.log("Pergunta salva com sucesso")
+        console.log("Pergunta salva com sucesso");
         res.redirect("/");
     }).catch((error)=> console.log(error));
+})
+// Rota individual para cada pergunta
+
+app.get("/pergunta/:id", (req, res) => {
+    let id = req.params.id;
+    question.findAll({raw: true, order:[["id", "DESC"]]}).then(_perguntas => {
+        //console.log(_perguntas)
+        let pergunta = {};
+        _perguntas.forEach(p => {
+            if(p.id == id)
+            pergunta = p;
+        })
+        res.render('../view/index.ejs', {
+            perguntas: [pergunta]
+        });
+    }) 
+
 })
 // Inicializar a aplicação
 

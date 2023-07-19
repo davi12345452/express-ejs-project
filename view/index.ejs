@@ -1,3 +1,28 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/navbar.ejs') %>
+<!--
+    Através do uso dos comandos de EJS, usamos forEach para cada pergunta devolvida no array, que estamos
+    enviando para o front-end através do express. Com isso, temos uma lista/array de objetos contendo ti-
+    tulo e descrição de cada pergunta
+-->
+<div class="container">
+    <hr>
+    <h1>Lista de perguntas:</h1>
+    <hr>
+    <a href="/perguntar" class="btn btn-danger">Faça sua pergunta</a>
+    <hr>
+    <% perguntas.forEach(pergunta=>{%>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <h3><%=pergunta.title%></h3>
+            </div>
+            <br>
+            <div class="card-footer">
+                <button class="btn btn-danger">Responder</button>
+            </div>
+        </div>
+        <br>
+    <%})%>
+</div>
 <%- include('partials/scriptsFooter.ejs') %>
