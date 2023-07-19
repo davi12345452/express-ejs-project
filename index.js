@@ -78,6 +78,20 @@ app.post("/salvaDadoPerguntas", (req, res) => {
         res.redirect("/");
     }).catch((error)=> console.log(error));
 })
+
+app.post("/salvaDadoResposta", (req, res) => {
+    let _answer = req.body.resposta;
+    let _idQ = req.body.idQuestion;
+    answer.create({
+        answerText: _answer,
+        IDQuestion: _idQ
+    }).then(() => {
+        console.log(_answer);
+        res.redirect("/perguntas/"+_idQ);
+    }).catch((error)=>{
+        console.log(error);
+    })
+})
 // Rota individual para cada pergunta
 
 app.get("/perguntas/:id", (req, res) => {
@@ -86,19 +100,26 @@ app.get("/perguntas/:id", (req, res) => {
     question.findOne({
         where: {id: _id}
     }).then(_pergunta => {
-        if(_pergunta != undefined){ // Achou a pergunta no db
-            console.log(_pergunta);
-            res.render("../view/pergunta.ejs", {
-                pergunta: _pergunta
-            })
-        }else{
+        if (_pergunta != undefined) { // Achou a pergunta no db
+            console.log(_pergunta.id)
+            answer.findAll({raw: true, order:[["id", "DESC"]], where:{
+                IDQuestion: _pergunta.id // Corrigido para _pergunta.id
+            }}).then(_answers => {
+                res.render("../view/pergunta.ejs", {
+                    pergunta: _pergunta,
+                    respostas: _answers
+                });
+            });
+        } else {
             res.redirect("/");
         }
-        /*res.render('../view/index.ejs', {
-            perguntas: _pergunta
-        });*/
-    })
-})
+    }).catch(err => {
+        // Trate o erro adequadamente
+        console.error(err);
+        res.redirect("/");
+    });
+});
+
 // Inicializar a aplicação
 
 app.listen(8080, (error) => {

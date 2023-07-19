@@ -12,9 +12,31 @@
         </div>
         <br>
         <div class="card-footer">
-            <textarea class="form-control" placeholder="Escreva a sua resposta..."></textarea>
-            <br>
-            <button class="btn btn-danger">Responder</button>
+            <form method="POST" action="/salvaDadoResposta">
+                <br><label>Responda: </label>
+                <br><textarea name="resposta" class="form-control" placeholder="Escreva a sua resposta..."></textarea>
+                <!--
+                    Gambiarra, vamos passar o id da pergunta via um input hidden. 
+                -->
+                <input type="hidden" name="idQuestion" value="<%= pergunta.id %>">
+                <br><button class="btn btn-danger">Responder</button>
+            </form>
+        </div>
+        <br>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Respostas:</h3>
+        </div>
+        <% respostas.forEach(answer =>{ %>
+            <hr>
+            <div class="card-body">
+                <p><%= answer.answerText %></p>
+            </div>
+        <% }) %>
+        <br>
+        <div class="card-footer">
         </div>
     </div>
 </div>

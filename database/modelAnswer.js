@@ -1,12 +1,12 @@
 const Sequelize = require("sequelize");
 const connection = require("./sequelize");
 
-const answer = connection.define("_respostas", {
-    body:{
+const answer = connection.define("_resposta", {
+    answerText:{
         type: Sequelize.TEXT,
         allowNull: false
     },
-    IDAnswer:{
+    IDQuestion:{
         type: Sequelize.INTEGER,
         allowNull: false
     }
